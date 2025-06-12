@@ -1,0 +1,7 @@
+48 11 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 1 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
+48 15 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 2 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
+48 18 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 3 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
+48 20 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 4 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
+48 21 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 5 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
+48 22 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 6 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
+48 23 * * * cd ~/museum-of-twitter && ./bin/museum-post.py 7 2>&1 |tee -a museum.out |ifne ntfy send http://localhost:5000/errs "museum post error"
