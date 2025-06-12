@@ -1,0 +1,5 @@
+@ltsRetrop
+
+therapy: $500
+
+tattoo: $500 but cooler

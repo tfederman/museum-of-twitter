@@ -1,0 +1,9 @@
+@PREMIUMCONTENT =
+
+SOCRATES: slave boy can you tell me the color of this can
+
+BOY: yes it is blue
+
+SOCRATES: and so you can suppose the beer is ice cold
+
+BOY: yes

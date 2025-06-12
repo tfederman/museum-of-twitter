@@ -1,0 +1,3 @@
+@existentialcoms
+
+Computer programmer: "this code is too complicated, maybe if I made it even more complicated it would be simpler."
