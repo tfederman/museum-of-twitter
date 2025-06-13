@@ -1,7 +1,7 @@
 # museum-of-twitter
 Collection of saved tweets and Bluesky post bot
 
-* Almost entirely politics-free
+* Almost entirely free of politics, dooming, ironic bad posts, dunking on bad posts.
 
 * Dates are extracted where possible and tweets are reposted on the same month/day as originally posted
 
