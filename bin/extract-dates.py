@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import re
 import json
 from datetime import datetime
@@ -13,6 +14,7 @@ patterns = [
     ("[a-zA-z]{3,9} [0-9]{1,2}, 20[0-9]{2}", "%B %d, %Y"), # June 25, 2016
     ("[0-9]{1,2} [a-zA-z]{3} 20[0-9]{2}", "%d %b %Y"), # 15 Apr 2015
     ("20[0-9]{2}-[0-9]{2}-[0-9]{2}", "%Y-%m-%d"), # 2022-03-13
+    ("[a-zA-z]{3,4} [a-zA-z]{3,4} [0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2} \\+0000 20[0-9]{2}", "%a %b %d %H:%M:%S +0000 %Y"), # Tue Apr 24 14:12:35 +0000 2018
 ]
 
 dates = {}
@@ -29,8 +31,25 @@ def extract_date(s):
 
     return None
 
+def extract_date_from_json(filename):
+    m = re.search("([0-9]{10,})", filename)
+    if m:
+        tweet_id = m.group(1)
+    else:
+        return None
+
+    json_file = f"./data/tweet-contents/{tweet_id}.json"
+    if os.path.exists(json_file):
+        j = json.loads(open(json_file).read())
+        date_str = j.get("created_at")
+        if date_str:
+            dt = extract_date(date_str)
+            return dt
+
+    return None
+
 for k,v in j.items():
-    dt = extract_date(v)
+    dt = extract_date(v) or extract_date_from_json(k)
 
     # ignore dates of feb. 29 images or else they
     # would only get posted once every 4 years
