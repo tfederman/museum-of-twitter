@@ -31,6 +31,12 @@ def extract_date(s):
 
 for k,v in j.items():
     dt = extract_date(v)
+
+    # ignore dates of feb. 29 images or else they
+    # would only get posted once every 4 years
+    if dt and dt.month == 2 and dt.day == 29:
+        continue
+
     if dt:
         dates[k] = dt.strftime("%Y-%m-%d")
 
