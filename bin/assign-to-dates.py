@@ -24,9 +24,12 @@ while dt < datetime(2026,1,1):
     year[dt_str] = [k for k,v in dates.items() if v[5:] == dt_str]
     images = [i for i in images if i not in year[dt_str]]
 
-    while len(year[dt_str]) < 4 and images:
+    images_per_day = 3 if random.random() < 0.20 else 4
+    while len(year[dt_str]) < images_per_day and images:
         year[dt_str].append(images.pop())
 
     dt += timedelta(days=1)
 
 print(json.dumps(year, indent=4))
+
+assert len(images) == 0, len(images)
