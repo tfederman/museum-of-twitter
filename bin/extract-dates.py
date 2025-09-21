@@ -3,6 +3,7 @@
 import os
 import re
 import json
+import shutil
 from datetime import datetime
 
 # usage: ./bin/extract-dates.py > ./data/extracted-dates.json
@@ -51,13 +52,19 @@ def extract_date_from_json(filename):
 for k,v in j.items():
     dt = extract_date(v) or extract_date_from_json(k)
 
-    # ignore dates of feb. 29 images or else they
+    # adjust dates of feb. 29 images or else they
     # would only get posted once every 4 years
     if dt and dt.month == 2 and dt.day == 29:
-        continue
+        dt = dt.replace(day=28)
 
     if dt:
         dates[k] = dt.strftime("%Y-%m-%d")
+    else:
+        print(k)
+        if os.path.exists(f"images/{k}"):
+            shutil.copy2(f"images/{k}", f"undated/{k}")
+        else:
+            print("\tDOES NOT EXIST")
 
 
-print(json.dumps(dates, indent=4))
+#print(json.dumps(dates, indent=4))
