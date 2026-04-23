@@ -29,6 +29,11 @@ if len(images) < idx:
 img = images[idx-1]
 text = open(f"./alt-text/{img}.txt").read().strip()
 
-post = Post()
+try:
+    comment_text = open(f"./comments/{img}.txt").read().strip()
+except:
+    comment_text = None
+
+post = Post(text=comment_text)
 post.add(Image(filename=f"./images/{img}", alt=text))
 bsky.create_post(post=post)
